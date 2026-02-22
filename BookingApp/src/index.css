@@ -15,7 +15,7 @@ html{
     --color--dark: rgb(16, 23, 34);
     --color--primary:#4F47E5;
     --color--secendery: #EBE9E9;
-    --color--third: rgb(100 116 139);
+    --color--third: #F1F5F9;
     --color--fours: rgb(148 163 184);
 
 }
@@ -76,6 +76,6 @@ h3{
 }
 
 .border-r{
-    border-right: 1px solid var(--color--text);
-    padding: 1rem;
+    border-right: 1px solid gray;
+    padding: 0 1rem;
 }
