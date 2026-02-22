@@ -1,6 +1,12 @@
 import {useRef, useState} from 'react';
 import useOutsideClick from "../Hooks/useOutsideClick.js";
 import {MdLocationOn} from 'react-icons/md'
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRange } from "react-date-range";
+import {format} from "date-fns";
+
+
 const Header = () => {
     const [destination, setDestination] = useState('')
     const [show, setShow] = useState(false);
@@ -9,6 +15,18 @@ const Header = () => {
         children: 0,
         room: 1,
     })
+
+    const [date, setDate] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key:'selection'
+        }
+        
+    ])
+
+
+    const [openDate, setOpenDate] = useState(false)
 
     console.log(show)
 
@@ -28,10 +46,10 @@ const Header = () => {
             <div className={'header__navbar'}>
                 <MdLocationOn/> <input className={'header__search border-r'} name={'destination'} id={'destination'}
                  placeholder={' where to go?'} onChange={(e) => setDestination(e.target.value)}/>
-                <div className={'header__date border-r'}>
-                    <span></span>
-                    <p>02/21/2026 to 02/21/2026 </p>
+                <div className={'header__date border-r'} onClick={() => setOpenDate(true)}>
+                    <p>{`${format(date[0].startDate,'MM/dd/yyyy')} to ${format(date[0].startDate,'MM/dd/yyyy')}`}</p>
                 </div>
+                {openDate && <DateRange onChange={item=> setDate([item.selection])} ranges={date} minDate={new Date()} claseName={'DateRange'}  />}
                 <div onClick={(e) => setShow(!show)} className={'header__option border-r'}>
                     {option.adult} adult • {option.children} children • {option.room} room
                 </div>
