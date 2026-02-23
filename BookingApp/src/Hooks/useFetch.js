@@ -32,3 +32,4 @@ export default function  useFetch(Url , Query=''){
     return {isLoading , data}
 }
 
+

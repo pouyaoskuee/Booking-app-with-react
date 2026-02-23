@@ -94,5 +94,3 @@ function Modal_items({type, minLimit, option, handleOption}) {
         </div>
     )
 }
-
-

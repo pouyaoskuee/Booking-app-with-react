@@ -17,4 +17,3 @@ export default function useOutsideClick(ref , exception , cb) {
 
     }, [ref , cb]);
 }
-
