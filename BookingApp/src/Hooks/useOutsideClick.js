@@ -1,10 +1,12 @@
 import {useEffect} from "react";
 
-export default function useOutsideClick(ref , cb) {
+export default function useOutsideClick(ref , exception , cb) {
     useEffect(() => {
+        console.log(ref);
 
         function handleOutsideClick(e) {
-            if (ref.current && !ref.current.contains(e.target) && !e.target.classList.contains('header__option')) {
+            console.log(e.target)
+            if (ref.current && !ref.current.contains(e.target) && !e.target.classList.contains(exception)) {
                 cb()
             }
 
@@ -15,3 +17,4 @@ export default function useOutsideClick(ref , cb) {
 
     }, [ref , cb]);
 }
+

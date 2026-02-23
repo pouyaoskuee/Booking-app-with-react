@@ -28,7 +28,6 @@ const Header = () => {
 
     const [openDate, setOpenDate] = useState(false)
 
-    console.log(show)
 
     const handleOption = (name, operation) => {
         setOption((prev) => {
@@ -40,23 +39,27 @@ const Header = () => {
         })
     }
 
+
+
     return (
         <header className="header">
             <button className={'heder__bookmarks'}>bookmark</button>
             <div className={'header__navbar'}>
                 <MdLocationOn/> <input className={'header__search border-r'} name={'destination'} id={'destination'}
                  placeholder={' where to go?'} onChange={(e) => setDestination(e.target.value)}/>
-                <div className={'header__date border-r'} onClick={() => setOpenDate(true)}>
+                <div  className={'header__date border-r'} onClick={() => setOpenDate(!openDate)}>
                     <p>{`${format(date[0].startDate,'MM/dd/yyyy')} to ${format(date[0].startDate,'MM/dd/yyyy')}`}</p>
+                    {openDate && <DateRange onChange={item=> setDate([item.selection])} ranges={date} minDate={new Date()} className={'DateRange'}  />}
                 </div>
-                {openDate && <DateRange onChange={item=> setDate([item.selection])} ranges={date} minDate={new Date()} claseName={'DateRange'}  />}
+
                 <div onClick={(e) => setShow(!show)} className={'header__option border-r'}>
                     {option.adult} adult • {option.children} children • {option.room} room
+                    {show && <Modal_filter option={option} handleOption={handleOption} setShow={setShow}/>}
                 </div>
                 <button className={'header__search-btn'}>🔎</button>
             </div>
             <button className={'header__login'}>login</button>
-            {show && <Modal_filter option={option} handleOption={handleOption} setShow={setShow}/>}
+
         </header>
     );
 };
@@ -66,7 +69,7 @@ export default Header;
 function Modal_filter({option, handleOption , setShow}) {
 
     const optionRef = useRef();
-    useOutsideClick(optionRef , ()=>setShow(false));
+    useOutsideClick(optionRef , 'header__option' , ()=>setShow(false));
 
     return (
         <div className={'Modal-filter'} ref={optionRef}>

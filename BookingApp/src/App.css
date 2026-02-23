@@ -36,12 +36,26 @@
 
 }
 
+.header__date{
+    position: relative;
+}
+
+.DateRange{
+    position: absolute;
+    top: 5rem;
+    right: -3rem;
+}
+
 /*modal-filter*/
+
+
+.header__option{
+    position: relative;
+}
 
 .Modal-filter{
     position: absolute;
-    top: 8rem;
-    right: 37rem;
+    top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
