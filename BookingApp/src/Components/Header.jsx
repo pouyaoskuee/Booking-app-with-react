@@ -1,10 +1,11 @@
 import {useRef, useState} from 'react';
 import useOutsideClick from "../Hooks/useOutsideClick.js";
-import {MdLocationOn} from 'react-icons/md'
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import {format} from "date-fns";
+import {MdLocationOn} from 'react-icons/md'
+import {HiCalendar, HiSearch} from "react-icons/hi";
 
 
 const Header = () => {
@@ -39,26 +40,32 @@ const Header = () => {
         })
     }
 
+    const handleSearch = () => {
+        navigate("/hotels")
+    }
+
 
 
     return (
         <header className="header">
             <button className={'heder__bookmarks'}>bookmark</button>
             <div className={'header__navbar'}>
-                <MdLocationOn/> <input className={'header__search border-r'} name={'destination'} id={'destination'}
-                 placeholder={' where to go?'} onChange={(e) => setDestination(e.target.value)}/>
+                <div className="header__search">
+                    <MdLocationOn className={'header__Location-icon'} /> <input className={'header__input border-r'} name={'destination'} id={'destination'} placeholder={' where to go?'} onChange={(e) => setDestination(e.target.value)}/>
+                </div>
                 <div  className={'header__date border-r'} onClick={() => setOpenDate(!openDate)}>
+                    <HiCalendar className={'header__date-icon'}/>
                     <p>{`${format(date[0].startDate,'MM/dd/yyyy')} to ${format(date[0].startDate,'MM/dd/yyyy')}`}</p>
                     {openDate && <DateRange onChange={item=> setDate([item.selection])} ranges={date} minDate={new Date()} className={'DateRange'}  />}
                 </div>
 
-                <div onClick={(e) => setShow(!show)} className={'header__option border-r'}>
+                <div onClick={() => setShow(!show)} className={'header__option border-r'}>
                     {option.adult} adult • {option.children} children • {option.room} room
                     {show && <Modal_filter option={option} handleOption={handleOption} setShow={setShow}/>}
                 </div>
-                <button className={'header__search-btn'}>🔎</button>
+                <button className={'header__search-btn'}><HiSearch className={'header__search-icon'}/></button>
             </div>
-            <button className={'header__login'}>login</button>
+            <button onClick={handleSearch} className={'header__login'}>login</button>
 
         </header>
     );

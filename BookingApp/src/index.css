@@ -17,13 +17,14 @@ html{
     --color--secendery: #EBE9E9;
     --color--third: #F1F5F9;
     --color--fours: rgb(148 163 184);
+    --color--red: #F44336;
 
 }
 
 
 body, input, textarea, button, select, p ,span, a {
     font-family: 'system-ui' , 'arial';
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     line-height: 1.5;
     font-weight: 300;
 }
@@ -77,5 +78,5 @@ h3{
 
 .border-r{
     border-right: 1px solid gray;
-    padding: 0 1rem;
+    padding: 0 1rem 0 0 ;
 }

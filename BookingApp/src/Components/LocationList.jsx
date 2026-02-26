@@ -3,16 +3,19 @@ import useFetch from "../Hooks/useFetch.js";
 import IsLoading from "./IsLoading.jsx";
 
 const LocationList = () => {
-    const {data, isLoading}=useFetch('http://localhost:5000/hotels')
+    const {data, isLoading}=useFetch('http://localhost:8000/hotels')
     console.log(data)
     console.log(isLoading)
     return (
-        <div className={'LocationList'}>
+        <section>
             {isLoading ? <IsLoading/>: null}
-            {data.map((item)=>(
-                <Location__card key={item.id} item={item}/>
-            ))}
-        </div>
+            <h2>Nearby Locations</h2>
+            <div className={'LocationList'} >
+                {data.map((item)=>(
+                    <Location__card key={item.id} item={item}/>
+                ))}
+            </div>
+        </section>
     );
 };
 
@@ -23,7 +26,10 @@ function Location__card ({item}) {
     console.log(item)
     return (
         <div className="Location__card">
-            <img src={item.picture_url.url} alt={item.name}/>
+            <div className="card__img">
+                {/*<img src={item.picture_url.url} alt={item.name}/>*/}
+                <img src={'/src/assets/image10.png'}/>
+            </div>
             <div className="card__description">
                 <p>{item.id} </p>
                 <p>{item.smart-location} </p>
