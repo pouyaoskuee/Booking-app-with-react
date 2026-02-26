@@ -38,3 +38,4 @@ function Location__card ({item}) {
         </div>
     )
 }
+
