@@ -27,8 +27,7 @@ function Location__card ({item}) {
     return (
         <div className="Location__card">
             <div className="card__img">
-                {/*<img src={item.picture_url.url} alt={item.name}/>*/}
-                <img src={'/src/assets/image10.png'}/>
+                <img src={item.picture_url.url} alt={item.name}/>
             </div>
             <div className="card__description">
                 <p>{item.id} </p>
